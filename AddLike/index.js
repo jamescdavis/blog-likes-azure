@@ -11,17 +11,20 @@ module.exports = function (context, req) {
   if (!postName) {
     context.res = {
       status: 400,
-      body: 'Please pass a postName in the request body'
+      body: 'Please pass a postName as a parameter'
     };
-    context.done();
+
+    return context.done();
   }
 
   tableService.retrieveEntity(tableName, 'Partition', postName, function(error, result, response) {
     let likes = 0;
 
-    if (error) {
+    if (error && error.code !== "ResourceNotFound") {
+      context.res.status(500).json({ error: error });
+    }
 
-    } else if (result) {
+    if (result) {
       likes = response.body.likes;
     }
 
