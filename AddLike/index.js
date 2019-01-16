@@ -37,7 +37,7 @@ module.exports = function (context, req) {
     // Use { echoContent: true } if you want to return the created item including the Timestamp & etag
     tableService.insertOrReplaceEntity(tableName, entity, { echoContent: true }, function (error, result, response) {
       if (!error) {
-        context.res.status(201).json(response);
+        context.res.status(201).json(result);
       } else {
         context.res.status(500).json({ error: error });
       }

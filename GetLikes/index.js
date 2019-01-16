@@ -19,7 +19,7 @@ module.exports = function (context, req) {
   // return item with RowKey 'id'
   tableService.retrieveEntity(tableName, 'Partition', postName, function (error, result, response) {
     if (!error) {
-      context.res.status(201).json(response);
+      context.res.status(201).json(result);
     } else {
       context.res.status(500).json({ error: error });
     }
