@@ -1,0 +1,13 @@
+{
+  "name": "ghost-likes-azure",
+  "version": "1.0.0",
+  "description": "Simple Azure Functions app for tracking likes on a blog",
+  "main": "index.js",
+  "repository": "http://github.com/pzuraq/ghost-likes-azure",
+  "author": "Chris Garrett",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "azure-storage": "^2.10.2"
+  }
+}
