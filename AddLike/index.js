@@ -27,7 +27,7 @@ module.exports = function (context, req) {
 
     const entity = {
       RowKey: postName,
-      PartitionKey: 'Partition'
+      PartitionKey: 'Partition',
       likes: likes + 1
     };
 
