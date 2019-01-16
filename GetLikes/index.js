@@ -1,11 +1,6 @@
 const azure = require('azure-storage');
 
-const tableService = azure.createTableService(
-  ServiceClient.DEVSTORE_STORAGE_ACCOUNT,
-  ServiceClient.DEVSTORE_STORAGE_ACCESS_KEY,
-  ServiceClient.DEVSTORE_TABLE_HOST
-);
-
+const tableService = azure.createTableService();
 const tableName = 'ghostlikes';
 
 module.exports = function (context, req) {
