@@ -4,8 +4,6 @@ const tableService = azure.createTableService();
 const tableName = 'bloglikes';
 
 module.exports = function (context, req) {
-  context.log('Start AddLike');
-
   let postName = req.params.postName;
 
   if (!postName) {
@@ -18,26 +16,26 @@ module.exports = function (context, req) {
   }
 
   tableService.retrieveEntity(tableName, 'Partition', postName, function(error, result, response) {
-    let likes = 0;
+    let likes = 1;
 
     if (error && error.code !== "ResourceNotFound") {
       context.res.status(500).json({ error: error });
     }
 
     if (result) {
-      likes = response.body.likes;
+      likes = response.body.likes + 1;
     }
 
     const entity = {
       RowKey: postName,
       PartitionKey: 'Partition',
-      likes: likes + 1
+      likes
     };
 
     // Use { echoContent: true } if you want to return the created item including the Timestamp & etag
     tableService.insertOrReplaceEntity(tableName, entity, { echoContent: true }, function (error, result, response) {
       if (!error) {
-        context.res.status(201).json(result);
+        context.res.status(201).json({ likes });
       } else {
         context.res.status(500).json({ error: error });
       }
