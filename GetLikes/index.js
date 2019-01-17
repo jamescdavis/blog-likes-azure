@@ -1,7 +1,7 @@
 const azure = require('azure-storage');
 
 const tableService = azure.createTableService();
-const tableName = 'ghostlikes';
+const tableName = 'bloglikes';
 
 module.exports = function (context, req) {
   context.log('Start GetLikes');
